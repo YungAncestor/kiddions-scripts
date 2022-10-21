@@ -62,7 +62,7 @@ end, function(value)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_TARGET", value-1)
 end)
 
-dch_menu_root:add_array_item("选择枪手", {"未选择", "[1][5%]", "[2][7%]", "[3][8%][隐藏]", "[4][9%]", "[5][10%]"}, function()
+dch_menu_root:add_array_item("选择枪手", {"未选择", "[1][5%]", "[2][9%]", "[3][7%]", "[4][10%]", "[5][8%][隐藏]"}, function()
 	return stats.get_int("MP"..get_last_mp_char().."_H3OPT_CREWWEAP")+1
 end, function(value)
 	local H3OPT_APPROACH = stats.get_int("MP"..get_last_mp_char().."_H3OPT_APPROACH")
@@ -71,7 +71,7 @@ end, function(value)
 	end
 end)
 
-dch_menu_root:add_array_item("选择车手", {"未选择", "[1][5%]", "[2][6%]", "[3][7%]", "[4][9%]", "[5][10%]"}, function()
+dch_menu_root:add_array_item("选择车手", {"未选择", "[1][5%]", "[2][7%]", "[3][9%]", "[4][6%]", "[5][10%]"}, function()
 	return stats.get_int("MP"..get_last_mp_char().."_H3OPT_CREWDRIVER")+1
 end, function(value)
 	local H3OPT_APPROACH = stats.get_int("MP"..get_last_mp_char().."_H3OPT_APPROACH")
@@ -80,7 +80,7 @@ end, function(value)
 	end
 end)
 
-dch_menu_root:add_array_item("选择黑客", {"未选择", "[1][3%][2:26|1:42]", "[2][5%][2:52|2:01]", "[3][7%][2:59|2:05]", "[4][9%][3:25|2:23]", "[5][10%][3:30|2:26][隐藏]"}, function()
+dch_menu_root:add_array_item("选择黑客", {"未选择", "[1][3%][2:26|1:42]", "[2][7%][2:59|2:05]", "[3][5%][2:52|2:01]", "[4][10%][3:30|2:26][隐藏]", "[5][9%][3:25|2:23]"}, function()
 	return stats.get_int("MP"..get_last_mp_char().."_H3OPT_CREWHACKER")+1
 end, function(value)
 	local H3OPT_APPROACH = stats.get_int("MP"..get_last_mp_char().."_H3OPT_APPROACH")
@@ -617,7 +617,7 @@ for i=1, 6, 1 do
 end
 
 dch_menu_reset_preps:add_action("是 - 重置白板", function()
-	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 0)
+	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 0).
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", 0)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_CREWHACKER", 0)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_CREWDRIVER", 0)
