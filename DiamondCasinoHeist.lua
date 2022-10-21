@@ -110,6 +110,8 @@ end)
 dch_menu_root:add_action("跳过全部前置（先交钱开任务）", function()
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", -1)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", -1)
+	stats.set_int("MP"..get_last_mp_char().."_H3OPT_DISRUPTSHIP", 3)
+	stats.set_int("MP"..get_last_mp_char().."_H3OPT_KEYLEVELS", 2)
 end)
 
 dch_menu_optional_preps = dch_menu_root:add_submenu("自定义")
