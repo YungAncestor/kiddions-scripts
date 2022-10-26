@@ -619,7 +619,7 @@ for i=1, 6, 1 do
 end
 
 dch_menu_reset_preps:add_action("是 - 重置白板", function()
-	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 0).
+	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 0)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", 0)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_CREWHACKER", 0)
 	stats.set_int("MP"..get_last_mp_char().."_H3OPT_CREWDRIVER", 0)
