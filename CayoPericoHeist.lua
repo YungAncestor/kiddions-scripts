@@ -1,3 +1,7 @@
+--
+-- CayoPericoHeist 佩里科岛抢劫任务设置
+--
+
 -- 十进制整数转换为 二进制 存放于table中
 function int_to_bitset(n)
 	local t = {}
@@ -325,6 +329,12 @@ cph_menu_optional_preps:add_array_item("运货卡车位置", {"未设置", "小�
 	return stats.get_int("MP"..get_last_mp_char().."_H4CNF_TROJAN")+1
 end, function(value)
 	stats.set_int("MP"..get_last_mp_char().."_H4CNF_TROJAN", value-1)
+end)
+
+cph_menu_optional_preps:add_int_range("前置奖章进度", 1, 0, 2147483647, function()
+	return stats.get_int("MP"..get_last_mp_char().."_AWD_WELL_PREPARED")
+end, function(value)
+	stats.set_int("MP"..get_last_mp_char().."_AWD_WELL_PREPARED", value)
 end)
 
 cph_menu_reset_prep = cph_menu_root:add_submenu("重置前置任务")

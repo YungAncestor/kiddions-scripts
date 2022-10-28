@@ -1,3 +1,7 @@
+--
+-- DiamondCasinoHeist 名钻赌场豪劫设置脚本
+--
+
 -- 十进制整数转换为 二进制 存放于table中
 function int_to_bitset(n)
 	local t = {}
@@ -118,32 +122,25 @@ dch_menu_optional_preps = dch_menu_root:add_submenu("自定义")
 
 dch_menu_optional_preps:add_action("【通用】一键完成必需前置", function()
 	local H3OPT_APPROACH = stats.get_int("MP"..get_last_mp_char().."_H3OPT_APPROACH")
-	local AWD_PREPARATION = stats.get_int("MP"..get_last_mp_char().."_AWD_PREPARATION")
 	-- 判断选择的方式
 	if H3OPT_APPROACH == 1 then
 		-- 隐迹潜踪
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 127) -- 0000 0111 1111
-		AWD_PREPARATION = AWD_PREPARATION + 7
 	elseif H3OPT_APPROACH == 2 then
 		-- 兵不厌诈
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 159) -- 0000 1001 1111
-		AWD_PREPARATION = AWD_PREPARATION + 6
 	elseif H3OPT_APPROACH == 3 then
 		-- 气势汹汹
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET1", 799) -- 0011 0001 1111
-		AWD_PREPARATION = AWD_PREPARATION + 7
 	end
 	if (H3OPT_APPROACH > 0) and (H3OPT_APPROACH < 4) then
 		-- 2级门禁卡
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_KEYLEVELS", 2)
-		-- 修改赌场前置奖章进度
-		--stats.set_int("MP"..get_last_mp_char().."_AWD_PREPARATION", AWD_PREPARATION)
 	end
 end)
 
 dch_menu_optional_preps:add_action("【通用】一键选择常用方案", function()
 	local H3OPT_APPROACH = stats.get_int("MP"..get_last_mp_char().."_H3OPT_APPROACH")
-	local AWD_PREPARATION = stats.get_int("MP"..get_last_mp_char().."_AWD_PREPARATION")
 	local H3OPT_BITSET0 = stats.get_int("MP"..get_last_mp_char().."_H3OPT_BITSET0")
 	local BITSET0 = int_to_bitset(H3OPT_BITSET0)
 	-- 判断选择的方式
@@ -155,7 +152,6 @@ dch_menu_optional_preps:add_action("【通用】一键选择常用方案", funct
 		BITSET0[#BITSET0-5] = 1
 		H3OPT_BITSET0 = bitset_to_int(BITSET0)
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", H3OPT_BITSET0)
-		AWD_PREPARATION = AWD_PREPARATION + 3
 	elseif H3OPT_APPROACH == 2 then
 		-- 兵不厌诈（默认古倍）
 		-- 0000 0_00 0011 0000 0000 001_ 
@@ -164,7 +160,6 @@ dch_menu_optional_preps:add_action("【通用】一键选择常用方案", funct
 		BITSET0[#BITSET0-13] = 1
 		H3OPT_BITSET0 = bitset_to_int(BITSET0)
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", H3OPT_BITSET0)
-		AWD_PREPARATION = AWD_PREPARATION + 3
 	elseif H3OPT_APPROACH == 3 then
 		-- 气势汹汹
 		-- 0001 1_00 0000 0000 0000 010_
@@ -173,12 +168,9 @@ dch_menu_optional_preps:add_action("【通用】一键选择常用方案", funct
 		BITSET0[#BITSET0-20] = 1
 		H3OPT_BITSET0 = bitset_to_int(BITSET0)
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_BITSET0", H3OPT_BITSET0)
-		AWD_PREPARATION = AWD_PREPARATION + 3
 		-- 杜根货物
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_DISRUPTSHIP", 3)
 	end
-		-- 修改赌场前置奖章进度
-		--stats.set_int("MP"..get_last_mp_char().."_AWD_PREPARATION", AWD_PREPARATION)
 end)
 
 -- MP0_H3OPT_BITSET1
@@ -603,6 +595,13 @@ end, function(value)
 		stats.set_int("MP"..get_last_mp_char().."_H3OPT_KEYLEVELS", value)
 	end
 end)
+
+dch_menu_optional_preps:add_int_range("【通用】前置奖章进度", 1, 0, 2147483647, function()
+	return stats.get_int("MP"..get_last_mp_char().."_AWD_PREPARATION")
+end, function(value)
+	stats.set_int("MP"..get_last_mp_char().."_AWD_PREPARATION", value)
+end)
+
 
 dch_menu_reset_preps = dch_menu_root:add_submenu("重置白板")
 dch_menu_reset_all = dch_menu_root:add_submenu("重置赌场豪劫")
